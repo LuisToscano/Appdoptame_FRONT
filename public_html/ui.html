@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+        <link href="css/reset.css" rel="stylesheet" type="text/css"/>
+        <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+        <link href="css/main.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        
+    <div id="dark_bg" class="dark_background"></div>
+        
+    <nav>
+        
+        <!-- SIDENAV -->
+        
+        <ul id="slide-out" class="side-nav">
+          <li id="user_info">
+              <div class="user_info">
+                  <div class="user_info_left">
+                     <img src="img/usuario.png">
+                  </div>
+                  <div class="user_info_right">
+                      <div class="nombre_usuario">Usuario</div> 
+                      <div class="boton_usuario"><i class="small mdi-navigation-arrow-drop-down-circle"></i></div>
+                  </div>
+              </div>
+          </li>
+          <li><a href="#!">Editar Perfil</a></li>
+          <li><a href="#!">Crear Grupo Animalista</a></li>
+          <li><a href="#!">Configuración</a></li>
+          <li><a href="#!">Ayuda</a></li>
+        </ul>
+        
+        <!-- NAVBAR -->
+        
+        <div class="myNavBar flex-spbetween-row pink_backg">
+          <div class="navBarItem"><a id="side_menu_icon" href="#" data-activates="slide-out" class="button-collapse"><i class="tiny mdi-navigation-menu"></i></a></div>
+          <div class="navBarItem">Usuario</div>
+          <div class="navBarItem"><i id="notif_icon" class="mdi-social-notifications-on"></i></div>
+        </div>
+    </nav>  
+        
+    <!-- NOTIFICACIONES -->
+    
+    <div id="notifications">
+        
+        <div>asdasdasdasdsadasdasassad</div>
+        <div>asdasdasdasdsadasdasassad</div>
+        <div>asdasdasdasdsadasdasassad</div>
+        <div>asdasdasdasdsadasdasassad</div>
+        <div class="ver_mas">Ver mas...</div>
+    </div>
+    
+    <!-- GRID DE BUSQUEDA -->
+        
+    <div id="busqueda" class="grid_container"> 
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script>
+        $(".button-collapse").sideNav();
+        $('ul.tabs').tabs();
+    </script>
+    <script type="text/javascript" src="js/main.js"></script>
+    </body>
+</html>
