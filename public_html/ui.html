@@ -16,23 +16,6 @@ and open the template in the editor.
     <body>
         
     <div id="dark_bg" class="dark_background"></div>    
-    
-     <!-- BUSQUEDA AVANZADA -->
-    
-    <div id="popup_busqueda_avanzada">
-        <div class="form_busqueda_avanzada">
-            <h2>Búsqueda Avanzada</h2>
-            <form>
-                <select>
-                  <option value="1">Mixto</option>
-                  <option value="2">Raza 1</option>
-                  <option value="3">Raza 2</option>
-                </select>
-                <label>Raza Predominante</label>
-                <div><button class="btn btnSubmit waves-effect waves-light blue_backg" type="submit" name="action">Editar Busqueda</button></div>
-                </form>
-        </div>
-    </div>
         
     <!-- SIDENAV -->
      
@@ -84,33 +67,40 @@ and open the template in the editor.
     </div>
     
     <!-- GRID DE BUSQUEDA -->
-        
-    <div id="busqueda" class="grid_container"> 
-        <div class="grid_row">
-            <div class="grid_cell">
-                <div id="busqueda_avanzada">
-                    <img src="img/logosimbolo.png">
-                </div>
-            </div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div id="flbtn_busqueda" class="floating_btn"><img id="buscar_perro" src="img/buscar_perro.png"/></div>
+    <div id="busqueda">    
+        <div id="ventana_busqueda_avanzada">
+             <div class="form_busqueda_avanzada">
+                 
+                 <h2>Búsqueda Avanzada</h2>
+                 
+                 <div class="form_aceptar_cancelar">
+                     <div class="linea"><div></div></div>
+                     <div class="botones">
+                        <a class="btn blue"><i class="tiny mdi-navigation-check"></i></a>
+                        <a class="btn red"><i class="tiny mdi-navigation-close"></i></a>
+                     </div>
+                 </div>
+               
+                 <form>
+                     <span class="form_label">1. Raza Predominante</span>
+                     <div class="input-field">
+                     <select>
+                       <option value="1">Mixto</option>
+                       <option value="2">Raza 1</option>
+                       <option value="3">Raza 2</option>
+                     </select>
+                     </div>
+
+                     <span class="form_label">2. Edad</span>
+                     <p class="range-field">
+                         <input type="range" id="edad_desde" min="0" max="20" value="0"/>
+                     </p>
+                     <p class="range-field">
+                         <input type="range" id="edad_hasta" min="0" max="20" value="100"/>
+                      </p>
+                 </form>
+             </div>
+         </div>
     </div>
     
     

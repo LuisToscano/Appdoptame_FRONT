@@ -376,13 +376,9 @@ nav{
        font-weight: bold;
    }
    
-   #popup_busqueda_avanzada{
-     position: fixed;
-     width: 90%;
-     height: 90%;
+   #ventana_busqueda_avanzada{
+     width: 100%;
      background-color: #FFFFFF;
-     margin: 5%; 
-     z-index: 300; 
    }
    
     .form_busqueda_avanzada{
@@ -397,4 +393,46 @@ nav{
      font-weight: bold;
      font-size: 1.8rem;
      color: #007CBB;
+     margin-bottom: 0px;
+     margin-top: 1rem;
+   }
+   
+   .form_label{
+     color: #007CBB;
+     font-weight: bold;
+     font-size: 1rem;
+   }
+   
+   .form_busqueda_avanzada form p.range-field input{
+       margin-bottom: 0px;
+   }
+   
+   .form_aceptar_cancelar{
+       width: 100%;
+       display: flex;
+       flex-direction: row;
+       margin-bottom: 1.5rem;
+   }
+   
+   .form_aceptar_cancelar .botones a{
+      width: 2.5rem;
+      border-radius: 100%;
+      padding: 0px;
+   }
+   
+   .form_aceptar_cancelar .botones {
+      width: 30%;
+   }
+   
+   .form_aceptar_cancelar .linea{
+      width: 70%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+   }
+   
+   .form_aceptar_cancelar .linea div{
+      border-bottom: 2px solid #007CBB;
+      width: 90%;
+      height: 1px;
    }
