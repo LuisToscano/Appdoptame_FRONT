@@ -15,11 +15,28 @@ and open the template in the editor.
     </head>
     <body>
         
-    <div id="dark_bg" class="dark_background"></div>
+    <div id="dark_bg" class="dark_background"></div>    
+    
+     <!-- BUSQUEDA AVANZADA -->
+    
+    <div id="popup_busqueda_avanzada">
+        <div class="form_busqueda_avanzada">
+            <h2>Búsqueda Avanzada</h2>
+            <form>
+                <select>
+                  <option value="1">Mixto</option>
+                  <option value="2">Raza 1</option>
+                  <option value="3">Raza 2</option>
+                </select>
+                <label>Raza Predominante</label>
+                <div><button class="btn btnSubmit waves-effect waves-light blue_backg" type="submit" name="action">Editar Busqueda</button></div>
+                </form>
+        </div>
+    </div>
         
+    <!-- SIDENAV -->
+     
     <nav>
-        
-        <!-- SIDENAV -->
         
         <ul id="slide-out" class="side-nav">
           <li id="user_info">
@@ -39,15 +56,22 @@ and open the template in the editor.
           <li><a href="#!">Ayuda</a></li>
         </ul>
         
-        <!-- NAVBAR -->
+    <!-- NAVBAR -->
         
-        <div class="myNavBar flex-spbetween-row pink_backg">
+        <div class="myNavBar flex-spbetween-row blue_backg">
           <div class="navBarItem"><a id="side_menu_icon" href="#" data-activates="slide-out" class="button-collapse"><i class="tiny mdi-navigation-menu"></i></a></div>
           <div class="navBarItem">Usuario</div>
           <div class="navBarItem"><i id="notif_icon" class="mdi-social-notifications-on"></i></div>
         </div>
     </nav>  
-        
+    
+    <!-- TAB BAR -->
+    <ul class="tabs blue_backg">
+        <li class="tab col s3 blue_backg"><a href="#"><i class="small mdi-content-add-circle"></i></a></li>
+        <li class="tab col s3 blue_backg"><a class="active" href="#busqueda"><i class="small mdi-action-search"></i></a></li>
+        <li class="tab col s3 blue_backg"><a href="#"><i class="small mdi-notification-event-available"></i></a></li>
+      </ul>
+    
     <!-- NOTIFICACIONES -->
     
     <div id="notifications">
@@ -63,17 +87,11 @@ and open the template in the editor.
         
     <div id="busqueda" class="grid_container"> 
         <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
-        </div>
-        <div class="grid_row">
-            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell">
+                <div id="busqueda_avanzada">
+                    <img src="img/logosimbolo.png">
+                </div>
+            </div>
             <div class="grid_cell"><img src="img/perro.jpg"></div>
             <div class="grid_cell"><img src="img/perro.jpg"></div>
         </div>
@@ -87,12 +105,24 @@ and open the template in the editor.
             <div class="grid_cell"><img src="img/perro.jpg"></div>
             <div class="grid_cell"><img src="img/perro.jpg"></div>
         </div>
+        <div class="grid_row">
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+            <div class="grid_cell"><img src="img/perro.jpg"></div>
+        </div>
+        <div id="flbtn_busqueda" class="floating_btn"><img id="buscar_perro" src="img/buscar_perro.png"/></div>
     </div>
+    
+    
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script type="text/javascript" src="js/materialize.min.js"></script>
     <script>
         $(".button-collapse").sideNav();
         $('ul.tabs').tabs();
+        
+        $(document).ready(function() {
+        $('select').material_select();
+      });
     </script>
     <script type="text/javascript" src="js/main.js"></script>
     </body>
