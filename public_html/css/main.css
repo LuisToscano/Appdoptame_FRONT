@@ -11,6 +11,10 @@ a{
     color: #26A9D6;
 }
 
+.error{
+    color: red;
+}
+
 .container{
     position: absolute;
     width: 100%;
