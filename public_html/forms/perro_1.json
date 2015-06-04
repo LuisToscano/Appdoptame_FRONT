@@ -23,13 +23,19 @@
     "value": ""
 	},
         
-    "email": {
-    "type": "email",
-    "label": "Email",
-    "placeholder": "",
-    "disabled": false,
-    "validate": true,
-    "animated_label": true,
-    "value":""
+    "color": {
+    "type": "select",
+    "label": "Color de Pelaje",
+    "required": false,
+    "options":{
+        "0":{
+             "tag":"Negro",
+             "selected": true
+            },
+        "1":{
+             "tag":"Macho",
+             "disabled":true
+            }
+    }
 	}
 }

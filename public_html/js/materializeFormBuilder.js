@@ -93,25 +93,35 @@ function textBoxSettings(key, val, idContainer, isRequired){
 
 /*******************************************************************************************/
 
-function textBoxSettings(key, val, idContainer, isRequired){
+function selectBoxSettings(key, val, idContainer, isRequired){
     var element_id = idContainer+'_'+key;
                     var specialAtr = specialAttributes(val, isRequired);
                     
-                    var containerDivOpen = '<div class="input-field">';
-                    var containerDivClose = '</div>';
-                    var inputTag = '<input type="'+val.type+'" id="'+element_id+'" name="'+key+'"'+specialAtr+'>' ;
-                    
-                    var labelTag = "";
-                    if(!isEmpty(val.label)){
-                        if(isEmpty(val.placeholder) && isEmpty(val.value) && val.animated_label)
-                        {
-                            labelTag+='<label for="'+element_id+'" >'+val.label+'</label>';
-                        }
-                        else
-                        {
-                            labelTag+='<label for="'+element_id+'" class="active">'+val.label+'</label>';
-                        }
+                    var strRequired = "";
+                    if(val.required!=null && val.required == true)
+                    {
+                        strRequired = " required";
                     }
+                    
+                    var containerDivOpen = '<div class="input-field"><select'+strRequired+'>';
+                    var containerDivClose = '</select></div>';
+                    var optionTag = '' ;
+                    
+                    if(val.options!=null){
+                    $.each( val.options, function( value, option ) {  
+                      
+                      
+                      
+                      optionTag += '<option value="'+value+'">'+option.tag+'</option>'
+                    });
+                    }
+                    
+                    
+                    
+                    var labelTag;
+                    if(!isEmpty(val.label)){
+                    var abelTag = '<label>'+val.label+'</label>';
+                }
                     
                     var inputHTML = containerDivOpen + inputTag + labelTag + containerDivClose;
                     $( "#"+idContainer ).append(inputHTML);
@@ -133,31 +143,22 @@ function specialAttributes(val, defRequired)
       if(defRequired)
         specialAtr += " required";
   }
-    
-  switch(val.type)
-  {   
-      case "text":
-      case "password":
-      case "email":
-      {        
-        if(val.disabled!=null && val.disabled==true){
-            specialAtr += " disabled";
-        }
+      
+    if(val.disabled!=null && val.disabled==true){
+        specialAtr += " disabled";
+    }
 
-        if(!isEmpty(val.placeholder)){
-            specialAtr += ' placeholder = "'+val.placeholder+'"';
-        }
-        
-        if(val.validate!=null && val.validate==true){
-            specialAtr += ' class = "validate"';
-        }
-        
-        if(!isEmpty(val.value)){
-            specialAtr += ' value = "'+val.value+'"';
-        }
-        break;
-       }
-  }
-  
+    if(!isEmpty(val.placeholder)){
+        specialAtr += ' placeholder = "'+val.placeholder+'"';
+    }
+
+    if(val.validate!=null && val.validate==true){
+        specialAtr += ' class = "validate"';
+    }
+
+    if(!isEmpty(val.value)){
+        specialAtr += ' value = "'+val.value+'"';
+    }
+    
   return specialAtr;
 }
