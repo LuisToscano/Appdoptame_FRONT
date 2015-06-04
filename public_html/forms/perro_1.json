@@ -1,0 +1,35 @@
+{
+    "form_config": {
+    "required_default": true
+	},
+        
+  "nombre": {
+    "type": "text",
+    "label": "Nombre Provisional",
+    "placeholder": "",
+    "disabled": false,
+    "validate": true,
+    "animated_label": true,
+    "value":"este es un ejemplo"
+	},
+        
+    "password": {
+    "type": "password",
+    "label": "Password",
+    "placeholder": "",
+    "disabled": false,
+    "validate": true,
+    "animated_label": true,
+    "value": ""
+	},
+        
+    "email": {
+    "type": "email",
+    "label": "Email",
+    "placeholder": "",
+    "disabled": false,
+    "validate": true,
+    "animated_label": true,
+    "value":""
+	}
+}

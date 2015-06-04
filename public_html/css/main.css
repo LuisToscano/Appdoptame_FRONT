@@ -389,6 +389,10 @@ nav{
      align-items: center;
    }
    
+   .form_busqueda_avanzada form{
+     width: 90%;
+   }
+   
    .form_busqueda_avanzada h2{
      font-weight: bold;
      font-size: 1.8rem;
@@ -436,3 +440,18 @@ nav{
       width: 90%;
       height: 1px;
    }
+   
+   p input{
+       margin-right: 1rem;
+   }
+   
+   p label{
+       margin-right: 1rem;
+       margin-top: 0.8rem;
+   }
+   
+   [type="checkbox"]+label:before{
+         border: 2px solid #007CBB;
+   }
+   
+   

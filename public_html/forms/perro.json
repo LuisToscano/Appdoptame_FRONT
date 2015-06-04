@@ -1,0 +1,85 @@
+{
+    "form_config": {
+    "required_default": true
+	},
+        
+  "nombre": {
+    "type": "text",
+    "label": "Nombre Provisional",
+    "placeholder": null,
+    "disabled": false,
+    "value":""
+	},
+	"raza": {
+    "type": "select",
+    "label": "Raza Predominante",
+    "placeholder": null,
+    "value": {
+		
+	}
+	},
+	"edad": {
+    "type": "number",
+    "label": "Edad Aproximada",
+    "placeholder": null,
+    "value": null,
+	"min":0,
+	"max":20
+	},
+	"sexo": {
+    "type": "select",
+    "label": "Sexo",
+    "placeholder": null,
+    "value": {
+		"0":"Macho",
+		"1":"Hembra"
+	}
+	},
+	"tamano": {
+    "type": "select",
+    "label": "Tamano",
+    "placeholder": null,
+    "value": {
+		"0":"Miniatura",
+		"1":"Pequeno",
+		"2":"Mediano",
+		"3":"Grande",
+		"4":"Gigante"
+	}
+	},
+	 "color": {
+    "type": "text",
+    "label": "Color",
+    "placeholder": null,
+    "value": null
+	},
+	"cuidados": {
+    "type": "checkbox",
+    "label": "Informacion de Cuidados",
+    "placeholder": null,
+    "value": {
+		"0":"Vacunado",
+		"1":"Desparasitado",
+		"2":"Esterilizado"
+	}
+	},
+	"foto": {
+    "type": "file",
+    "label": "Imagen de Perfil",
+    "placeholder": null,
+    "value": null
+	},
+	"acercade": {
+    "type": "textarea",
+    "label": "Acerca de tu perro",
+    "placeholder": null,
+    "value": null
+	},
+	"otros": {
+    "type": "textarea",
+    "label": "Otros",
+    "placeholder": null,
+    "value": null
+	}
+	
+}

@@ -82,22 +82,44 @@ and open the template in the editor.
                  </div>
                
                  <form>
-                     <span class="form_label">1. Raza Predominante</span>
-                     <div class="input-field">
-                     <select>
-                       <option value="1">Mixto</option>
-                       <option value="2">Raza 1</option>
-                       <option value="3">Raza 2</option>
-                     </select>
-                     </div>
+                    <span class="form_label">1. Raza Predominante</span>
+                    <div class="input-field">
+                    <select>
+                      <option value="1">Mixto</option>
+                      <option value="2">Raza 1</option>
+                      <option value="3">Raza 2</option>
+                    </select>
+                    </div>
 
-                     <span class="form_label">2. Edad</span>
-                     <p class="range-field">
-                         <input type="range" id="edad_desde" min="0" max="20" value="0"/>
-                     </p>
-                     <p class="range-field">
+                    <span class="form_label">2. Edad</span>
+                    <p class="range-field">
+                        <input type="range" id="edad_desde" min="0" max="20" value="0"/>
+                    </p>
+                    <p class="range-field">
                          <input type="range" id="edad_hasta" min="0" max="20" value="100"/>
-                      </p>
+                    </p>
+                      
+                    <span class="form_label">3. Sexo</span>
+                    <p>
+                        <input type="checkbox" id="sexo_m" checked="checked"/>
+                        <label for="test5">Macho</label>
+                        
+                        <input type="checkbox" id="sexo_h" checked="checked"/>
+                        <label for="test6">Hembra</label>
+                    </p>
+                    
+                    <span class="form_label">4. Color</span>
+                    <div class="input-field">
+                    <select>
+                      <option value="1">Cualquiera</option>
+                      <option value="2">Negro</option>
+                      <option value="3">Dorado</option>
+                      <option value="4">Café</option>
+                      <option value="5">Blanco</option>
+                      <option value="3">Gris</option>
+                    </select>
+                    </div>
+                    
                  </form>
              </div>
          </div>
