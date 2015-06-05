@@ -14,17 +14,21 @@ and open the template in the editor.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div id="form_container">   
-        </div>
+        <form id="form_container">   
+        </form>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src="js/materializeFormBuilder.js"></script>
         <script>
-            $(document).ready(function() {
-            createForm("forms/perro_1.json", "form_container", function(){
-                $('select').material_select(); 
+
+            $(window).load(function () {
+                createForm("forms/perro_1.json", "form_container");
+
             });
-          });
+
+            $(document).on('DOMSubtreeModified', 'select', function () {
+                $(this).material_select();
+            });
         </script>
         <script type="text/javascript" src="js/main.js"></script>
     </body>

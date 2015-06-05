@@ -11,7 +11,7 @@ function createForm(jsonURL, idContainer){
     delete(data.form_config);
     var cont = 0;
     
-    $.each( data, function( key, val ) {    
+    $.each( data, function( key, val ) {
        if(!isEmpty(val.type)){
             cont++;
             
