@@ -9,27 +9,33 @@ function createForm(jsonURL, idContainer){
     
     var config = data.form_config;
     delete(data.form_config);
+    var cont = 0;
     
     $.each( data, function( key, val ) {    
        if(!isEmpty(val.type)){
+            cont++;
+            
+            var div_id = idContainer+'_'+'element_div_'+cont;
+            var element_id = idContainer+'_input_'+cont;
+            
             switch(val.type){ 
                 case "text":{
-                    textBoxSettings(key, val, idContainer, config.required_default);
+                    textBoxSettings(cont, key, val, idContainer, config.required_default);
                     break;
                 }
                 
                 case "password":{
-                    textBoxSettings(key, val,idContainer, config.required_default);
+                    textBoxSettings(cont, key, val,idContainer, config.required_default);
                     break;    
                 }
                 
                 case "email":{
-                    textBoxSettings(key, val, idContainer, config.required_default);
+                    textBoxSettings(cont, key, val, idContainer, config.required_default);
                     break;    
                 }
                 
                 case "select":{
-                    selectBoxSettings(key, val, idContainer, config.required_default);
+                    selectBoxSettings(cont, key, val, idContainer, config.required_default);
                 }
 
                  default:{
@@ -67,12 +73,12 @@ function createForm(jsonURL, idContainer){
 
 /*******************************************************************************************/
 
-function textBoxSettings(key, val, idContainer, isRequired){
-    var element_id = idContainer+'_'+key;
+function textBoxSettings(cont, key, val, idContainer, isRequired){
+    var div_id = idContainer+'_'+'element_div_'+cont;
+    var element_id = idContainer+'_input_'+cont;
                     var specialAtr = specialAttributes(val, isRequired);
                     
-                    var containerDivOpen = '<div class="input-field">';
-                    var containerDivClose = '</div>';
+                    var containerDiv = '<div id="'+div_id+'" class="input-field"></div>';
                     var inputTag = '<input type="'+val.type+'" id="'+element_id+'" name="'+key+'"'+specialAtr+'>' ;
                     
                     var labelTag = "";
@@ -87,15 +93,16 @@ function textBoxSettings(key, val, idContainer, isRequired){
                         }
                     }
                     
-                    var inputHTML = containerDivOpen + inputTag + labelTag + containerDivClose;
-                    $( "#"+idContainer ).append(inputHTML);
+                    $( "#"+idContainer ).append(containerDiv);
+                    $( "#"+div_id ).append(inputTag);
+                    $( "#"+div_id ).append(labelTag);
 }
 
 /*******************************************************************************************/
 
-function selectBoxSettings(key, val, idContainer, isRequired){
-    var element_id = idContainer+'_'+key;
-                    var specialAtr = specialAttributes(val, isRequired);
+function selectBoxSettings(cont, key, val, idContainer, isRequired){
+    var div_id = idContainer+'_'+'element_div_'+cont;
+    var element_id = idContainer+'_input_'+cont;
                     
                     var strRequired = "";
                     if(val.required!=null && val.required == true)
@@ -103,31 +110,52 @@ function selectBoxSettings(key, val, idContainer, isRequired){
                         strRequired = " required";
                     }
                     
-                    var containerDivOpen = '<div class="input-field"><select'+strRequired+'>';
-                    var containerDivClose = '</select></div>';
+                    var containerDiv = '<div id="'+div_id+'" class="input-field"></div>';
+                    var inputTag = '<select id="'+element_id+'"'+strRequired+' name="'+key+'"></select>';
                     var optionTag = '' ;
                     
                     if(val.options!=null){
                     $.each( val.options, function( value, option ) {  
-                      
-                      
-                      
-                      optionTag += '<option value="'+value+'">'+option.tag+'</option>'
+                      var specialAtrib = specialAttributes(option, false);
+                      optionTag += '<option value="'+value+'" '+specialAtrib+'>'+option.tag+'</option>'
                     });
                     }
                     
-                    
-                    
-                    var labelTag;
+                    var labelTag = '';
                     if(!isEmpty(val.label)){
-                    var abelTag = '<label>'+val.label+'</label>';
-                }
-                    
-                    var inputHTML = containerDivOpen + inputTag + labelTag + containerDivClose;
-                    $( "#"+idContainer ).append(inputHTML);
+                     labelTag += '<label>'+val.label+'</label>';
+                    }
+                   
+                    $( "#"+idContainer ).append(containerDiv);
+                    $( "#"+div_id ).append(inputTag);
+                    $( "#"+element_id ).append(optionTag);
+                    $( "#"+div_id ).append(labelTag);
 }
 
 /*******************************************************************************************/
+
+function checkBoxSettings(cont, key, val, idContainer, isRequired){
+    var div_id = idContainer+'_'+'element_div_'+cont;
+    
+    if(val.direction!=null && val.direction == "horizontal"){
+        var containerDiv = '<p id="'+div_id+'"></p>';
+
+        $.each( val.options, function( value, option ) {  
+                          var specialAtrib = specialAttributes(option, false);
+                          optionTag += '<option value="'+value+'" '+specialAtrib+'>'+option.tag+'</option>'
+                        });
+    }
+    else if(val.direction!=null && val.direction == "vertical"){
+        
+    }
+    
+    var element_id = idContainer+'_input_'+cont;
+    
+    
+}
+
+/*******************************************************************************************/
+
 
 function specialAttributes(val, defRequired)
 {
@@ -158,6 +186,14 @@ function specialAttributes(val, defRequired)
 
     if(!isEmpty(val.value)){
         specialAtr += ' value = "'+val.value+'"';
+    }
+    
+    if(val.selected!=null && val.selected==true){
+        specialAtr += ' selected';
+    }
+    
+    if(val.checked!=null && val.checked==true){
+        specialAtr += ' checked';
     }
     
   return specialAtr;

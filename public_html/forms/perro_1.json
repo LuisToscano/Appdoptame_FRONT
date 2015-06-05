@@ -33,9 +33,28 @@
              "selected": true
             },
         "1":{
+             "tag":"Blanco"
+            }
+    }
+	},
+        
+        "sexo": {
+    "type": "checkbox",
+    "direction": "vertical",
+    "show_label": true,
+    "boxes":{
+        "0":{
+             "nombre": "sexo_m",
              "tag":"Macho",
-             "disabled":true
+             "checked": true
+            },
+        "1":{
+             "nombre": "sexo_h",
+             "tag":"Hembra",
+             "checked": true
             }
     }
 	}
+        
+   
 }
