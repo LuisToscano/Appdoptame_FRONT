@@ -1,0 +1,20 @@
+{
+    "form_config": {
+    "required_default": true,
+    "name": "busqueda_avanzada",
+    "label": "Búsqueda Avanzada"
+    },
+    "raza": {
+        "type": "select",
+        "label": "Raza Predominante",
+        "options": {
+            "0": {
+                "tag": "Negro",
+                "selected": true
+            },
+            "1": {
+                "tag": "Blanco"
+            }
+        }
+    }
+}

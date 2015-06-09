@@ -1,60 +1,90 @@
 {
     "form_config": {
-    "required_default": true
-	},
-        
-  "nombre": {
-    "type": "text",
-    "label": "Nombre Provisional",
-    "placeholder": "",
-    "disabled": false,
-    "validate": true,
-    "animated_label": true,
-    "value":"este es un ejemplo"
-	},
-        
+        "required_default": false,
+        "name": "test_form",
+        "label": "Primer Formulario",
+        "action": "",
+        "method": "POST"
+    },
+    "nombre": {
+        "type": "text",
+        "label": "Nombre Provisional",
+        "placeholder": "",
+        "disabled": false,
+        "validate": true,
+        "animated_label": true,
+        "value": "este es un ejemplo"
+    },
     "password": {
-    "type": "password",
-    "label": "Password",
-    "placeholder": "",
-    "disabled": false,
-    "validate": true,
-    "animated_label": true,
-    "value": ""
-	},
-        
+        "type": "password",
+        "label": "Password",
+        "placeholder": "",
+        "disabled": false,
+        "validate": true,
+        "animated_label": true,
+        "value": ""
+    },
     "color": {
-    "type": "select",
-    "label": "Color de Pelaje",
-    "required": false,
-    "options":{
-        "0":{
-             "tag":"Negro",
-             "selected": true
+        "type": "select",
+        "label": "Color de Pelaje",
+        "required": false,
+        "options": {
+            "0": {
+                "tag": "Negro",
+                "selected": true
             },
-        "1":{
-             "tag":"Blanco"
+            "1": {
+                "tag": "Blanco"
             }
-    }
-	},
-        
-        "sexo": {
-    "type": "checkbox",
-    "direction": "vertical",
-    "show_label": true,
-    "boxes":{
-        "0":{
-             "nombre": "sexo_m",
-             "tag":"Macho",
-             "checked": true
+        }
+    },
+    "sexo": {
+        "type": "checkbox",
+        "direction": "horizontal",
+        "label": "Sexo",
+        "boxes": {
+            "0": {
+                "nombre": "sexo_m",
+                "tag": "Macho",
+                "checked": true,
+                "filled_in": true
             },
-        "1":{
-             "nombre": "sexo_h",
-             "tag":"Hembra",
-             "checked": true
+            "1": {
+                "nombre": "sexo_h",
+                "tag": "Hembra",
+                "disabled": true
             }
+        }
+    },
+    "Radiotest": {
+        "type": "radio",
+        "direction": "horizontal",
+        "label": "Radios",
+        "with_gap": true,
+        "radios": {
+            "0": {
+                "tag": "Opción 1",
+                "checked": true
+            },
+            "1": {
+                "tag": "Opción 2"
+            }
+        }
+    },
+    
+    "edad_desde": {
+        "type": "range",
+        "label": "Edad",
+        "min":0,
+        "max": 100
     }
-	}
-        
-   
+    
+    ,
+    
+    "edad_hasta": {
+        "type": "range",
+        "label": "",
+        "min":0,
+        "max": 100
+    }
 }
