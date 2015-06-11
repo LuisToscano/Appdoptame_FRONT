@@ -1,20 +1,973 @@
 {
     "form_config": {
-    "required_default": true,
-    "name": "busqueda_avanzada",
-    "label": "Búsqueda Avanzada"
+        "required_default": true,
+        "name": "busqueda_avanzada",
+        "label": "Búsqueda Avanzada"
     },
     "raza": {
         "type": "select",
         "label": "Raza Predominante",
         "options": {
             "0": {
-                "tag": "Negro",
+                "tag": "Mixto",
                 "selected": true
             },
             "1": {
-                "tag": "Blanco"
+                "tag": "Affenpinscher"
+            },
+            "2": {
+                "tag": "Afgano"
+            },
+            "3": {
+                "tag": "Akita"
+            },
+            "4": {
+                "tag": "Akita Americano"
+            },
+            "5": {
+                "tag": "Alano espanol"
+            },
+            "6": {
+                "tag": "American Bully"
+            },
+            "7": {
+                "tag": "American Foxhound"
+            },
+            "8": {
+                "tag": "American Pitbull Terrier"
+            },
+            "9": {
+                "tag": "American Staffordshire"
+            },
+            "10": {
+                "tag": "Australian Silky Terrier"
+            },
+            "11": {
+                "tag": "Azawakh"
+            },
+            "12": {
+                "tag": "Barbet"
+            },
+            "13": {
+                "tag": "Basenji"
+            },
+            "14": {
+                "tag": "Basset artesiano de Normandia"
+            },
+            "15": {
+                "tag": "Basset azul de Gascuna"
+            },
+            "16": {
+                "tag": "Basset Hound"
+            },
+            "17": {
+                "tag": "Basset Leonardo de Bretana"
+            },
+            "18": {
+                "tag": "Beagle"
+            },
+            "19": {
+                "tag": "Beagle ? Harrier"
+            },
+            "20": {
+                "tag": "Berger de Picardie"
+            },
+            "21": {
+                "tag": "Bichon Bolones"
+            },
+            "22": {
+                "tag": "Bichon Frise"
+            },
+            "23": {
+                "tag": "Bichon Habanero"
+            },
+            "24": {
+                "tag": "Bichon Maltes"
+            },
+            "25": {
+                "tag": "Billy"
+            },
+            "26": {
+                "tag": "Black and Tan Coonhound"
+            },
+            "27": {
+                "tag": "Bloodhound"
+            },
+            "28": {
+                "tag": "Bobtail"
+            },
+            "29": {
+                "tag": "Bodeguero Andaluz"
+            },
+            "30": {
+                "tag": "Boerboel"
+            },
+            "31": {
+                "tag": "Border Collie"
+            },
+            "32": {
+                "tag": "Border Terrier"
+            },
+            "33": {
+                "tag": "Borzoi (Galgo Ruso)"
+            },
+            "34": {
+                "tag": "Boston Terrier"
+            },
+            "35": {
+                "tag": "Boxer"
+            },
+            "36": {
+                "tag": "Boyero Australiano"
+            },
+            "37": {
+                "tag": "Boyero de Flandes"
+            },
+            "38": {
+                "tag": "Boyero de las Ardenas"
+            },
+            "39": {
+                "tag": "Braco aleman de pelo corto"
+            },
+            "40": {
+                "tag": "Braco aleman de pelo duro"
+            },
+            "41": {
+                "tag": "Braco de Auvernia"
+            },
+            "42": {
+                "tag": "Braco de Weimar"
+            },
+            "43": {
+                "tag": "Braco del Ariege"
+            },
+            "44": {
+                "tag": "Braco del Bourbonnais"
+            },
+            "45": {
+                "tag": "Braco frances, tipo Gascuna, talla grande"
+            },
+            "46": {
+                "tag": "Braco frances, tipo Pirineos, talla pequena"
+            },
+            "47": {
+                "tag": "Braco Italiano"
+            },
+            "48": {
+                "tag": "Braco San Germain"
+            },
+            "49": {
+                "tag": "Briard"
+            },
+            "50": {
+                "tag": "Brittany"
+            },
+            "51": {
+                "tag": "Broholmer"
+            },
+            "52": {
+                "tag": "Buhund noruego"
+            },
+            "53": {
+                "tag": "Bull Terrier"
+            },
+            "54": {
+                "tag": "Bull Terrier miniature"
+            },
+            "55": {
+                "tag": "Bulldog"
+            },
+            "56": {
+                "tag": "Bulldog Americano"
+            },
+            "57": {
+                "tag": "Bulldog frances"
+            },
+            "58": {
+                "tag": "Bullmastin"
+            },
+            "59": {
+                "tag": "Cairn Terrier"
+            },
+            "60": {
+                "tag": "Cane Corso"
+            },
+            "61": {
+                "tag": "Caniche (Poodle)"
+            },
+            "62": {
+                "tag": "Carlino"
+            },
+            "63": {
+                "tag": "Cavalier King Charles"
+            },
+            "64": {
+                "tag": "Chihuahua"
+            },
+            "65": {
+                "tag": "Chin Japones"
+            },
+            "66": {
+                "tag": "Chow Chow"
+            },
+            "67": {
+                "tag": "Cimarron Uruguayo"
+            },
+            "68": {
+                "tag": "Cirneco Del Etna"
+            },
+            "69": {
+                "tag": "Clumber Spaniel"
+            },
+            "70": {
+                "tag": "Cobrador de Nueva Escocia"
+            },
+            "71": {
+                "tag": "Cocker Spaniel"
+            },
+            "72": {
+                "tag": "Cocker Americano"
+            },
+            "73": {
+                "tag": "Collie"
+            },
+            "74": {
+                "tag": "Collie Barbudo"
+            },
+            "75": {
+                "tag": "Collie Smooth"
+            },
+            "76": {
+                "tag": "Corgi Gales Cardigan"
+            },
+            "77": {
+                "tag": "Corgi Gales Pembroke"
+            },
+            "78": {
+                "tag": "Coton de Tulear"
+            },
+            "79": {
+                "tag": "Curly Coated Retriever (de pelo rizado)"
+            },
+            "80": {
+                "tag": "Dalmata"
+            },
+            "81": {
+                "tag": "Dandie Dinmont Terrier"
+            },
+            "82": {
+                "tag": "Deerhound Escoces"
+            },
+            "83": {
+                "tag": "Doberman"
+            },
+            "84": {
+                "tag": "Dogo Argentino"
+            },
+            "85": {
+                "tag": "Dogo Canario"
+            },
+            "86": {
+                "tag": "Dogo de Burdeos"
+            },
+            "87": {
+                "tag": "Dogo Mallorquin"
+            },
+            "88": {
+                "tag": "Drever"
+            },
+            "89": {
+                "tag": "Elkhound Noruego"
+            },
+            "90": {
+                "tag": "Epagneul breton"
+            },
+            "91": {
+                "tag": "Eurasier"
+            },
+            "92": {
+                "tag": "Faraon Hound"
+            },
+            "93": {
+                "tag": "Field Spaniel"
+            },
+            "94": {
+                "tag": "Fila Brasileiro"
+            },
+            "95": {
+                "tag": "Fila de San Miguel"
+            },
+            "96": {
+                "tag": "Fox Terrier pelo duro"
+            },
+            "97": {
+                "tag": "Fox Terrier de pelo liso"
+            },
+            "98": {
+                "tag": "Fox Terrier Toy"
+            },
+            "99": {
+                "tag": "Foxhound Americano"
+            },
+            "100": {
+                "tag": "Foxhound Ingles"
+            },
+            "101": {
+                "tag": "Galgo Espanol"
+            },
+            "102": {
+                "tag": "Galgo Italiano"
+            },
+            "103": {
+                "tag": "Gascon Saintongeois"
+            },
+            "104": {
+                "tag": "Glen Of Imaal Terrier"
+            },
+            "105": {
+                "tag": "Golden Retriever"
+            },
+            "106": {
+                "tag": "Gran Basset Grifon vendeano"
+            },
+            "107": {
+                "tag": "Gran Danes"
+            },
+            "108": {
+                "tag": "Greyhound"
+            },
+            "109": {
+                "tag": "Grifon Belga"
+            },
+            "110": {
+                "tag": "Grifon de Bruselas"
+            },
+            "111": {
+                "tag": "Grifon de muestra bohemio de pelo duro"
+            },
+            "112": {
+                "tag": "Grifon de muestra eslovaco de pelo duro"
+            },
+            "113": {
+                "tag": "Grifon de muestra Korthals de pelo duro"
+            },
+            "114": {
+                "tag": "Hamilton Stovare"
+            },
+            "115": {
+                "tag": "Harrier"
+            },
+            "116": {
+                "tag": "Hokkaido"
+            },
+            "117": {
+                "tag": "Hovawart"
+            },
+            "118": {
+                "tag": "Husky Siberiano"
+            },
+            "119": {
+                "tag": "Irish Soft Coated Wheaten Terrier"
+            },
+            "120": {
+                "tag": "Jack Russell Terrier"
+            },
+            "121": {
+                "tag": "Jamthund"
+            },
+            "122": {
+                "tag": "Kai"
+            },
+            "123": {
+                "tag": "Karjalankarhukoira"
+            },
+            "124": {
+                "tag": "Keedhond"
+            },
+            "125": {
+                "tag": "Kerry Blue Terrier"
+            },
+            "126": {
+                "tag": "Kishu"
+            },
+            "127": {
+                "tag": "Komondor"
+            },
+            "128": {
+                "tag": "Korea Jinco Dog"
+            },
+            "129": {
+                "tag": "Kromfohrlander"
+            },
+            "130": {
+                "tag": "Kuvasz"
+            },
+            "131": {
+                "tag": "Labrador Retriever"
+            },
+            "132": {
+                "tag": "Laika de Siberia oriental"
+            },
+            "133": {
+                "tag": "Laika Ruso-Europeo"
+            },
+            "134": {
+                "tag": "Lakeland Terrier"
+            },
+            "135": {
+                "tag": "Landseer"
+            },
+            "136": {
+                "tag": "Lebrel Hungaro"
+            },
+            "137": {
+                "tag": "Leonberger"
+            },
+            "138": {
+                "tag": "Lhasa Apso"
+            },
+            "139": {
+                "tag": "Lundehund"
+            },
+            "140": {
+                "tag": "Lowchen"
+            },
+            "141": {
+                "tag": "Malamute de Alaska"
+            },
+            "142": {
+                "tag": "Mastin"
+            },
+            "143": {
+                "tag": "Mastin Napolitano"
+            },
+            "144": {
+                "tag": "Mastin Tibetano"
+            },
+            "145": {
+                "tag": "Mudi"
+            },
+            "146": {
+                "tag": "Munsterlander grande"
+            },
+            "147": {
+                "tag": "Munsterlander pequeno"
+            },
+            "148": {
+                "tag": "Otterhound"
+            },
+            "149": {
+                "tag": "Papillon"
+            },
+            "150": {
+                "tag": "Parson Russell Terrier"
+            },
+            "151": {
+                "tag": "Pastor Aleman"
+            },
+            "152": {
+                "tag": "Pastor Australiano"
+            },
+            "153": {
+                "tag": "Pastor Belga"
+            },
+            "154": {
+                "tag": "Pastor Blanco Suizo"
+            },
+            "155": {
+                "tag": "Pastor Catalan"
+            },
+            "156": {
+                "tag": "Pastor de Anatolia"
+            },
+            "157": {
+                "tag": "Pastor de Beauce"
+            },
+            "158": {
+                "tag": "Pastor de los Pirineos"
+            },
+            "159": {
+                "tag": "Pastor de Shetland"
+            },
+            "160": {
+                "tag": "Pastor polaco de tierras bajas"
+            },
+            "161": {
+                "tag": "Pequeno Basset Grifon vendeano"
+            },
+            "162": {
+                "tag": "Pequeno Brabanzon"
+            },
+            "163": {
+                "tag": "Pequeno perro holandes para la caza acuatica"
+            },
+            "164": {
+                "tag": "Pequines"
+            },
+            "165": {
+                "tag": "Perdiguero de Burgos"
+            },
+            "166": {
+                "tag": "Perdiguero de Drente"
+            },
+            "167": {
+                "tag": "Perdiguero Portugues"
+            },
+            "168": {
+                "tag": "Perro crestado Chino"
+            },
+            "169": {
+                "tag": "Perro de Agua americano"
+            },
+            "170": {
+                "tag": "Perro de Agua espanol"
+            },
+            "171": {
+                "tag": "Perro de Agua portugues"
+            },
+            "172": {
+                "tag": "Perro de Canaan"
+            },
+            "173": {
+                "tag": "Perro de Castro Laboreiro"
+            },
+            "174": {
+                "tag": "Perro de Groenlandia"
+            },
+            "175": {
+                "tag": "Perro de montana Appenzell"
+            },
+            "176": {
+                "tag": "Perro de montana Bernes"
+            },
+            "177": {
+                "tag": "Perro de montana de la Sierra de la Estrela"
+            },
+            "178": {
+                "tag": "Perro de montana de los pirineos"
+            },
+            "179": {
+                "tag": "Perro de montana del Atlas"
+            },
+            "180": {
+                "tag": "Perro de montana Gran Suizo"
+            },
+            "181": {
+                "tag": "Perro de muestra aleman de pelo cerdoso"
+            },
+            "182": {
+                "tag": "Perro de muestra Danes"
+            },
+            "183": {
+                "tag": "Perro de pastor bergamasco"
+            },
+            "184": {
+                "tag": "Perro de pastor de Asia central"
+            },
+            "185": {
+                "tag": "Perro de pastor de Karst"
+            },
+            "186": {
+                "tag": "Perro de pastor de Rusia meridional"
+            },
+            "187": {
+                "tag": "Perro de pastor del Caucaso"
+            },
+            "188": {
+                "tag": "Perro de pastor islandes"
+            },
+            "189": {
+                "tag": "Perro de pastor polaco de las Llanuras"
+            },
+            "190": {
+                "tag": "Perro de pastor polaco de Podhale"
+            },
+            "191": {
+                "tag": "Perro de pastor portugues"
+            },
+            "192": {
+                "tag": "Perro de pastor yugoslavo de Charplanina"
+            },
+            "193": {
+                "tag": "Perro Entlebucher"
+            },
+            "194": {
+                "tag": "Perro esquimal Americano"
+            },
+            "195": {
+                "tag": "Perro Esquimal Canadiense"
+            },
+            "196": {
+                "tag": "Perro Lobo Checoslovaco"
+            },
+            "197": {
+                "tag": "Perro Lobo de Sarloos"
+            },
+            "198": {
+                "tag": "Perro pastor croato"
+            },
+            "199": {
+                "tag": "Perro pastor Mallorquin"
+            },
+            "200": {
+                "tag": "Perro pastor Maremmano-Abruzzese"
+            },
+            "201": {
+                "tag": "Perro sin pelo del Peru"
+            },
+            "202": {
+                "tag": "Perro sin pelo Mexicano"
+            },
+            "203": {
+                "tag": "Perro Smous holandes"
+            },
+            "204": {
+                "tag": "Pinscher"
+            },
+            "205": {
+                "tag": "Pinscher austriaco"
+            },
+            "206": {
+                "tag": "Pinscher miniatura"
+            },
+            "207": {
+                "tag": "Plott Hound"
+            },
+            "208": {
+                "tag": "Podenco Canario"
+            },
+            "209": {
+                "tag": "Podenco ibicenco"
+            },
+            "210": {
+                "tag": "Podenco portugues"
+            },
+            "211": {
+                "tag": "Pointer"
+            },
+            "212": {
+                "tag": "Pointer aleman de pelo corto"
+            },
+            "213": {
+                "tag": "Pointer aleman de pelo duro"
+            },
+            "214": {
+                "tag": "Poitevin"
+            },
+            "215": {
+                "tag": "Pomerania"
+            },
+            "216": {
+                "tag": "Porcelaine"
+            },
+            "217": {
+                "tag": "Pudelpointer"
+            },
+            "218": {
+                "tag": "Puli"
+            },
+            "219": {
+                "tag": "Pumi"
+            },
+            "220": {
+                "tag": "Rafeiro del Alentejo"
+            },
+            "221": {
+                "tag": "Rastreador de Hannover"
+            },
+            "222": {
+                "tag": "Rastreador montanes de Baviera"
+            },
+            "223": {
+                "tag": "Retriever de La Bahia de Chesapeake"
+            },
+            "224": {
+                "tag": "Retriever de pelo liso"
+            },
+            "225": {
+                "tag": "Ridgeback de Rodesia"
+            },
+            "226": {
+                "tag": "Rottweiler"
+            },
+            "227": {
+                "tag": "Sabueso aleman"
+            },
+            "228": {
+                "tag": "Sabueso Artesiano"
+            },
+            "229": {
+                "tag": "Sabueso austriaco negro y fuego"
+            },
+            "230": {
+                "tag": "Sabueso de Bosnia de pelo cerdoso"
+            },
+            "231": {
+                "tag": "Sabueso de Hygen"
+            },
+            "232": {
+                "tag": "Sabueso de las montanas de Montenegro"
+            },
+            "233": {
+                "tag": "Sabueso de Smaland"
+            },
+            "234": {
+                "tag": "Sabueso de Transilvania"
+            },
+            "235": {
+                "tag": "Sabueso del Tirol"
+            },
+            "236": {
+                "tag": "Sabueso eslovaco"
+            },
+            "237": {
+                "tag": "Sabueso espanol"
+            },
+            "238": {
+                "tag": "Sabueso Estirio de pelo duro"
+            },
+            "239": {
+                "tag": "Sabueso Finlandes"
+            },
+            "240": {
+                "tag": "Sabueso frances tricolor"
+            },
+            "241": {
+                "tag": "Sabueso Halden"
+            },
+            "242": {
+                "tag": "Sabueso Italiano de pelo corto"
+            },
+            "243": {
+                "tag": "Sabueso Italiano de pelo duro"
+            },
+            "244": {
+                "tag": "Sabueso Noruego"
+            },
+            "245": {
+                "tag": "Sabueso Polaco"
+            },
+            "246": {
+                "tag": "Sabueso Schiller"
+            },
+            "247": {
+                "tag": "Sabueso Serbio"
+            },
+            "248": {
+                "tag": "Sabueso Suizo"
+            },
+            "249": {
+                "tag": "Sabueso tricolor serbio"
+            },
+            "250": {
+                "tag": "Saluki (galgo persa)"
+            },
+            "251": {
+                "tag": "Samoyedo"
+            },
+            "252": {
+                "tag": "San Bernardo"
+            },
+            "253": {
+                "tag": "Schapendoes neerlandes"
+            },
+            "254": {
+                "tag": "Schipperke"
+            },
+            "255": {
+                "tag": "Schnauzer"
+            },
+            "256": {
+                "tag": "Schnauzer Gigante"
+            },
+            "257": {
+                "tag": "Schnauzer Miniatura"
+            },
+            "258": {
+                "tag": "Sealyham Terrier"
+            },
+            "259": {
+                "tag": "Setter Gordon"
+            },
+            "260": {
+                "tag": "Setter Ingles"
+            },
+            "261": {
+                "tag": "Setter Irlandes"
+            },
+            "262": {
+                "tag": "Setter Irlandes rojo"
+            },
+            "263": {
+                "tag": "Setter Irlandes rojo y blanco"
+            },
+            "264": {
+                "tag": "Shar Pei"
+            },
+            "265": {
+                "tag": "Shiba"
+            },
+            "266": {
+                "tag": "ShihTzu"
+            },
+            "267": {
+                "tag": "Shikoku"
+            },
+            "268": {
+                "tag": "Silky Terrier"
+            },
+            "269": {
+                "tag": "Sloughi (galgo arabe)"
+            },
+            "270": {
+                "tag": "Spaniel continental enano"
+            },
+            "271": {
+                "tag": "Spaniel de Agua Irlandes"
+            },
+            "272": {
+                "tag": "Spaniel de Pont-Audemer"
+            },
+            "273": {
+                "tag": "Spaniel de Sussex"
+            },
+            "274": {
+                "tag": "Spaniel Picardo"
+            },
+            "275": {
+                "tag": "Spaniel Tibetano"
+            },
+            "276": {
+                "tag": "Spinone Italiano"
+            },
+            "277": {
+                "tag": "Spitz Aleman"
+            },
+            "278": {
+                "tag": "Spitz Finlandes"
+            },
+            "279": {
+                "tag": "Spitz Japones"
+            },
+            "280": {
+                "tag": "Springer Spaniel Gales"
+            },
+            "281": {
+                "tag": "Springer Spaniel Ingles"
+            },
+            "282": {
+                "tag": "Spitz de Norrbotten"
+            },
+            "283": {
+                "tag": "Stabyhoun"
+            },
+            "284": {
+                "tag": "Staffordshire Bull Terrier"
+            },
+            "285": {
+                "tag": "Tchuvatch eslovaco"
+            },
+            "286": {
+                "tag": "Teckel"
+            },
+            "287": {
+                "tag": "Tejonero alpino"
+            },
+            "288": {
+                "tag": "Tejonero de Westfalia"
+            },
+            "289": {
+                "tag": "Terranova"
+            },
+            "290": {
+                "tag": "Terrier Australiano"
+            },
+            "291": {
+                "tag": "Terrier Bedlington"
+            },
+            "292": {
+                "tag": "Terrier Brasileno"
+            },
+            "293": {
+                "tag": "Terrier cazador aleman"
+            },
+            "294": {
+                "tag": "Terrier Cesky"
+            },
+            "295": {
+                "tag": "Terrier de Airedale"
+            },
+            "296": {
+                "tag": "Terrier de Norfolk"
+            },
+            "297": {
+                "tag": "Terrier de Skye"
+            },
+            "298": {
+                "tag": "Terrier Escoces"
+            },
+            "299": {
+                "tag": "Terrier Gales"
+            },
+            "300": {
+                "tag": "Terrier Irlandes"
+            },
+            "301": {
+                "tag": "Terrier Japones"
+            },
+            "302": {
+                "tag": "Terrier Tibetano"
+            },
+            "303": {
+                "tag": "Thai Ridgeback Dog"
+            },
+            "304": {
+                "tag": "Tosa Inu"
+            },
+            "305": {
+                "tag": "Valhund Sueco"
+            },
+            "306": {
+                "tag": "Vizsla"
+            },
+            "307": {
+                "tag": "Volpino Italiano"
+            },
+            "308": {
+                "tag": "West Highland"
+            },
+            "309": {
+                "tag": "Wetterhound"
+            },
+            "310": {
+                "tag": "Wheaten Terrier"
+            },
+            "311": {
+                "tag": "Whippet"
+            },
+            "312": {
+                "tag": "Wolfhound Irlandes"
+            },
+            "313": {
+                "tag": "Yorkshire Terrier"
+            },
+            "314": {
+                "tag": "Otro"
             }
         }
+    },
+    "edad_desde": {
+        "type": "range",
+        "label": "Edad",
+        "min": 0,
+        "max": 19,
+        "value": 0
+    },
+    "edad_hasta": {
+        "type": "range",
+        "label": "",
+        "min": 1,
+        "max": 20,
+        "value": 20
     }
 }
