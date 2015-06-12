@@ -8,9 +8,8 @@ function createForm(jsonURL, idContainer) {
     $.getJSON(jsonURL, function (data) {
 
         var config = data.form_config;
-        var formSpecialAttr = specialAttributes(data.form_config, false);
-        var formId = idContainer + '_form';
-        var formTag = '<form id="' + formId+ '" '+formSpecialAttr+'></form>';
+        var formObj = jQuery('<form/>', {});
+        newSpecialAttributes(formObj, data.form_config, false);
         
         if(!isEmpty(data.form_config.label))
         {
@@ -21,7 +20,7 @@ function createForm(jsonURL, idContainer) {
         delete(data.form_config);
         var cont = 0;
         
-        $("#" + idContainer).append(formTag);
+        $("#" + idContainer).append(formObj);
 
         $.each(data, function (key, val) {
             if (!isEmpty(val.type)) {
@@ -30,45 +29,45 @@ function createForm(jsonURL, idContainer) {
                 switch (val.type) {
                     case "text":
                     {
-                        textBoxSettings(cont, key, val, formId, config.required_default);
+                        textBoxSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
 
                     case "password":
                     {
-                        textBoxSettings(cont, key, val, formId, config.required_default);
+                        textBoxSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
 
                     case "email":
                     {
-                        textBoxSettings(cont, key, val, formId, config.required_default);
+                        textBoxSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
 
                     case "select":
                     {
-                        selectBoxSettings(cont, key, val, formId, config.required_default);
+                        selectBoxSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
 
                     case "checkbox":
                     {
-                        var newCont = checkBoxSettings(cont, key, val, formId, config.required_default);
+                        var newCont = checkBoxSettings(cont, key, val, formObj, config.required_default);
                         cont = newCont;
                         break;
                     }
                     
                     case "radio":
                     {
-                        var newCont = radioButtonSettings(cont, key, val, formId, config.required_default);
+                        var newCont = radioButtonSettings(cont, key, val, formObj, config.required_default);
                         cont = newCont;
                         break;
                     }
                     
                     case "range":
                     {
-                        rangeSettings(cont, key, val, formId, config.required_default);
+                        rangeSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
 
@@ -88,129 +87,104 @@ function createForm(jsonURL, idContainer) {
 
 function textBoxSettings(cont, key, val, idContainer, isRequired) {
 
-    var div_id = idContainer + '_' + 'element_container_' + cont;
     var element_id = idContainer + '_input_' + cont;
-    var specialAtr = specialAttributes(val, isRequired);
 
-    var containerDiv = '<div id="' + div_id + '" class="input-field"></div>';
-    var inputTag = '<input type="' + val.type + '" id="' + element_id + '" name="' + key + '"' + specialAtr + '>';
+    var containerObj = jQuery('<div/>', {"class":"input-field"});
+    
+    var inputObj = jQuery('<input/>', {"type":val.type, "name":key});
+    newSpecialAttributes(inputObj, val, isRequired);
 
-    var labelTag = "";
+    var labelObj;
     if (!isEmpty(val.label)) {
         if (isEmpty(val.placeholder) && isEmpty(val.value) && val.animated_label)
         {
-            labelTag += '<label for="' + element_id + '" >' + val.label + '</label>';
+            labelObj = jQuery('<label>'+val.label+'</label>', {});
         }
         else
         {
-            labelTag += '<label for="' + element_id + '" class="active">' + val.label + '</label>';
+            labelObj = jQuery('<label class="active">'+val.label+'</label>', {});
         }
     }
 
-    $("#" + idContainer).append(containerDiv);
-    $("#" + div_id).append(inputTag);
-    $("#" + div_id).append(labelTag);
+    containerObj.append(inputObj);
+    containerObj.append(labelObj);
+    idContainer.append(containerObj);
 }
 
 /*******************************************************************************************/
 
 function selectBoxSettings(cont, key, val, idContainer, isRequired) {
-    var div_id = idContainer + '_' + 'element_container_' + cont;
-    var element_id = idContainer + '_input_' + cont;
-
-    var strRequired = "";
+    var containerObj = jQuery('<div/>', {"class":"input-field"});    
+    var inputObj = jQuery('<select/>', {"name":key});
+     
     if (existsAndisTrue(val.required))
     {
-        strRequired = " required";
+        inputObj.attr("required", "required");
     }
-
-    var containerDiv = '<div id="' + div_id + '" class="input-field"></div>';
-    var inputTag = '<select id="' + element_id + '"' + strRequired + ' name="' + key + '"></select>';
-    var optionTag = '';
 
     if (val.options != null) {
         $.each(val.options, function (value, option) {
-            var specialAtrib = specialAttributes(option, false);
-            optionTag += '<option value="' + value + '" ' + specialAtrib + '>' + option.tag + '</option>'
+            var optionObj = jQuery('<option>'+option.tag+'</option>', {});
+            newSpecialAttributes(optionObj, option, false);
+            optionObj.attr("value", value);
+            inputObj.append(optionObj);
         });
     }
 
-    var labelTag = '';
+    var labelObj;
     if (!isEmpty(val.label)) {
-        labelTag += '<label>' + val.label + '</label>';
+        labelObj = jQuery('<label>'+val.label+'</label>', {});
     }
-
-    $("#" + idContainer).append(containerDiv);
-    $("#" + div_id).append(inputTag);
-    $("#" + element_id).append(optionTag);
-    $("#" + div_id).append(labelTag);
+    
+    containerObj.append(inputObj);
+    containerObj.append(labelObj);
+    idContainer.append(containerObj);
+    
 }
 
 /*******************************************************************************************/
 
 function checkBoxSettings(cont, key, val, idContainer, isRequired) {
+    
+    if (!isEmpty(val.label))
+        {
+            var openingLabelObj = jQuery('<span class="form_label">'+val.label+'</span>', {});
+            idContainer.append(openingLabelObj);
+        }
+        
     if (val.direction != null && val.direction == "horizontal") {
 
-        if (!isEmpty(val.label))
-        {
-            var openingLabelTag = '<span class="form_label">' + val.label + '</span>';
-            $("#" + idContainer).append(openingLabelTag);
-        }
-
-        var div_id = idContainer + '_' + 'element_container_' + cont;
-        var containerDiv = '<p id="' + div_id + '"></p>';
-        $("#" + idContainer).append(containerDiv);
-        var checkCont = cont;
+        var containerObj = jQuery('<p/>', {}); 
+        idContainer.append(containerObj);
+ 
         if (val.boxes != null) {
             $.each(val.boxes, function (value, option) {
-                var checkTag = "", labelTag = "";
-                var specialAtrib = specialAttributes(option, isRequired);
-                var element_id = idContainer + '_input_' + checkCont;
-                checkTag += '<input type="checkbox" id="' + element_id + '" name="' + key + '[]" ' + specialAtrib + '/>';
-                labelTag += '<label for="' + element_id + '">' + option.tag + '</label>';
-                $("#" + div_id).append(checkTag);
-                $("#" + div_id).append(labelTag);
-                checkCont++;
+                var inputObj = jQuery('<input/>', {"type":"checkbox", "name":key+"[]"});
+                newSpecialAttributes(inputObj, option, isRequired);
+                
+                var labelObj = jQuery('<label>'+option.tag+'</label>', {});
+                containerObj.append(inputObj);
+                containerObj.append(labelObj);
             });
-            return checkCont - 1;
-        }
-        else
-        {
-            return cont;
         }
     }
     else if (val.direction != null && val.direction == "vertical") {
 
-        if (!isEmpty(val.label))
-        {
-            var openingLabelTag = '<span class="form_label">' + val.label + '</span>';
-            $("#" + idContainer).append(openingLabelTag);
-        }
-
-        var checkCont = cont;
         if (val.boxes != null) {
             $.each(val.boxes, function (value, option) {
-                var div_id = idContainer + '_' + 'element_container_' + checkCont;
-                var containerDiv = '<p id="' + div_id + '"></p>';
-                $("#" + idContainer).append(containerDiv);
-                var checkTag = "", labelTag = "";
-                var specialAtrib = specialAttributes(option, false);
-                var element_id = idContainer + '_input_' + checkCont;
-                checkTag += '<input type="checkbox" name="' + key + '[]" id="' + element_id + '" ' + specialAtrib + '/>';
-                labelTag += '<label for="' + element_id + '">' + option.tag + '</label>';
-                $("#" + div_id).append(checkTag);
-                $("#" + div_id).append(labelTag);
-                checkCont++;
+                var containerObj = jQuery('<p/>', {}); 
+                idContainer.append(containerObj);
+ 
+                var inputObj = jQuery('<input/>', {"type":"checkbox", "name":key+"[]"});
+                newSpecialAttributes(inputObj, option, isRequired);
+                
+                var labelObj = jQuery('<label>'+option.tag+'</label>', {});
+                containerObj.append(inputObj);
+                containerObj.append(labelObj);
             });
-            return checkCont - 1;
-        }
-        else
-        {
-            return cont;
-        }
     }
 }
-
+}
 /*******************************************************************************************/
 
 function radioButtonSettings(cont, key, val, idContainer, isRequired) {
@@ -314,6 +288,8 @@ function specialAttributes(val, defRequired)
 {
     var specialAtr = "";
 
+    console.log(val);
+
     if (val.required != null)
     {
         if (val.required == true)
@@ -378,6 +354,77 @@ function specialAttributes(val, defRequired)
     }
 
     return specialAtr;
+}
+
+/*************************************************************************************************/
+
+
+function newSpecialAttributes(obj, val, defRequired)
+{
+    if (val.required != null)
+    {
+        if (val.required == true){
+            obj.attr('required', 'required');
+        }   
+    }
+    else
+    {
+        if (defRequired){
+            obj.attr('required', 'required');
+        }
+    }
+
+    if (existsAndisTrue(val.disabled)) {
+        obj.attr('disabled', 'disabled');
+    }
+
+    if (!isEmpty(val.placeholder)) {
+        obj.attr('placeholder', val.placeholder);
+    }
+
+    if (existsAndisTrue(val.validate)) {
+        obj.addClass('validate');
+    }
+
+    if (!isEmpty(val.value)) {
+        obj.attr('value', val.value);
+    }
+
+    if (existsAndisTrue(val.selected)) {
+        obj.attr('selected', 'selected');
+    }
+
+    if (existsAndisTrue(val.checked)) {
+        obj.attr('checked', 'checked');
+    }
+
+    if (existsAndisTrue(val.filled_in)) {
+        obj.addClass('filled-in');
+    }
+    
+    if (existsAndisTrue(val.with_gap)) {
+        obj.addClass('with-gap');
+    }
+    
+    if (existsAndisTrue(val.min)) {
+        obj.attr('min', val.min);
+    }
+    
+    if (existsAndisTrue(val.max)) {
+        obj.attr('max', val.max);
+    }
+    
+    if (!isEmpty(val.action)) {
+        obj.attr('action', val.action);
+    }
+    
+    if (!isEmpty(val.method)) {
+        obj.attr('method', val.method);
+    }
+    
+    if (!isEmpty(val.name)) {
+        obj.attr('name', val.name);
+    }
 }
 
 /*******************************************************************************************/
