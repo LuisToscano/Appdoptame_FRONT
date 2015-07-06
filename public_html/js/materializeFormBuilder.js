@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-function createForm(jsonURL, idContainer) {
+function createForm(jsonURL, form) {
 
     $.getJSON(jsonURL, function (data) {
 
@@ -14,13 +14,13 @@ function createForm(jsonURL, idContainer) {
         if(!isEmpty(data.form_config.label))
         {
             var formLabelTag = '<h2>'+data.form_config.label+'</h2>'
-            $("#" + idContainer).append(formLabelTag);
+            $("#" + form).append(formLabelTag);
         }
         
         delete(data.form_config);
         var cont = 0;
         
-        $("#" + idContainer).append(formObj);
+        $("#" + form).append(formObj);
 
         $.each(data, function (key, val) {
             if (!isEmpty(val.type)) {
@@ -70,6 +70,18 @@ function createForm(jsonURL, idContainer) {
                         rangeSettings(cont, key, val, formObj, config.required_default);
                         break;
                     }
+                    
+                    case "textarea":
+                    {
+                        textAreaSettings(cont, key, val, formObj, config.required_default);
+                        break;
+                    }
+                    
+                    case "file":
+                    {
+                        fileSettings(cont, key, val, formObj, config.required_default);
+                        break;
+                    }
 
                     default:
                     {
@@ -85,9 +97,7 @@ function createForm(jsonURL, idContainer) {
 
 /*******************************************************************************************/
 
-function textBoxSettings(cont, key, val, idContainer, isRequired) {
-
-    var element_id = idContainer + '_input_' + cont;
+function textBoxSettings(cont, key, val, form, isRequired) {
 
     var containerObj = jQuery('<div/>', {"class":"input-field"});
     
@@ -108,12 +118,12 @@ function textBoxSettings(cont, key, val, idContainer, isRequired) {
 
     containerObj.append(inputObj);
     containerObj.append(labelObj);
-    idContainer.append(containerObj);
+    form.append(containerObj);
 }
 
 /*******************************************************************************************/
 
-function selectBoxSettings(cont, key, val, idContainer, isRequired) {
+function selectBoxSettings(cont, key, val, form, isRequired) {
     var containerObj = jQuery('<div/>', {"class":"input-field"});    
     var inputObj = jQuery('<select/>', {"name":key});
      
@@ -138,24 +148,24 @@ function selectBoxSettings(cont, key, val, idContainer, isRequired) {
     
     containerObj.append(inputObj);
     containerObj.append(labelObj);
-    idContainer.append(containerObj);
+    form.append(containerObj);
     
 }
 
 /*******************************************************************************************/
 
-function checkBoxSettings(cont, key, val, idContainer, isRequired) {
+function checkBoxSettings(cont, key, val, form, isRequired) {
     
     if (!isEmpty(val.label))
         {
             var openingLabelObj = jQuery('<span class="form_label">'+val.label+'</span>', {});
-            idContainer.append(openingLabelObj);
+            form.append(openingLabelObj);
         }
         
     if (val.direction != null && val.direction == "horizontal") {
 
         var containerObj = jQuery('<p/>', {}); 
-        idContainer.append(containerObj);
+        form.append(containerObj);
  
         if (val.boxes != null) {
             $.each(val.boxes, function (value, option) {
@@ -173,7 +183,7 @@ function checkBoxSettings(cont, key, val, idContainer, isRequired) {
         if (val.boxes != null) {
             $.each(val.boxes, function (value, option) {
                 var containerObj = jQuery('<p/>', {}); 
-                idContainer.append(containerObj);
+                form.append(containerObj);
  
                 var inputObj = jQuery('<input/>', {"type":"checkbox", "name":key+"[]"});
                 newSpecialAttributes(inputObj, option, isRequired);
@@ -187,18 +197,18 @@ function checkBoxSettings(cont, key, val, idContainer, isRequired) {
 }
 /*******************************************************************************************/
 
-function radioButtonSettings(cont, key, val, idContainer, isRequired) {
+function radioButtonSettings(cont, key, val, form, isRequired) {
     if (val.direction != null && val.direction == "horizontal") {
 
         if (!isEmpty(val.label))
         {
             var openingLabelTag = '<span class="form_label">' + val.label + '</span>';
-            $("#" + idContainer).append(openingLabelTag);
+            $("#" + form).append(openingLabelTag);
         }
 
-        var div_id = idContainer + '_' + 'element_container_' + cont;
+        var div_id = form + '_' + 'element_container_' + cont;
         var containerDiv = '<p id="' + div_id + '"></p>';
-        $("#" + idContainer).append(containerDiv);
+        $("#" + form).append(containerDiv);
         var radioCont = cont;
         if (val.radios != null) {
             $.each(val.radios, function (value, option) {
@@ -208,7 +218,7 @@ function radioButtonSettings(cont, key, val, idContainer, isRequired) {
                 }
                 var checkTag = "", labelTag = "";
                 var specialAtrib = specialAttributes(option, isRequired);
-                var element_id = idContainer + '_input_' + radioCont;
+                var element_id = form + '_input_' + radioCont;
                 checkTag += '<input type="radio" id="' + element_id + '" name="' + key + '" ' + specialAtrib + '/>';
                 labelTag += '<label for="' + element_id + '">' + option.tag + '</label>';
                 $("#" + div_id).append(checkTag);
@@ -227,7 +237,7 @@ function radioButtonSettings(cont, key, val, idContainer, isRequired) {
         if (!isEmpty(val.label))
         {
             var openingLabelTag = '<span class="form_label">' + val.label + '</span>';
-            $("#" + idContainer).append(openingLabelTag);
+            $("#" + form).append(openingLabelTag);
         }
 
         var radioCont = cont;
@@ -239,12 +249,12 @@ function radioButtonSettings(cont, key, val, idContainer, isRequired) {
                     option.with_gap = true;
                 }
 
-                var div_id = idContainer + '_' + 'element_container_' + radioCont;
+                var div_id = form + '_' + 'element_container_' + radioCont;
                 var containerDiv = '<p id="' + div_id + '"></p>';
-                $("#" + idContainer).append(containerDiv);
+                $("#" + form).append(containerDiv);
                 var checkTag = "", labelTag = "";
                 var specialAtrib = specialAttributes(option, false);
-                var element_id = idContainer + '_input_' + radioCont;
+                var element_id = form + '_input_' + radioCont;
                 checkTag += '<input type="radio" name="' + key + '" id="' + element_id + '" ' + specialAtrib + '/>';
                 labelTag += '<label for="' + element_id + '">' + option.tag + '</label>';
                 $("#" + div_id).append(checkTag);
@@ -263,22 +273,65 @@ function radioButtonSettings(cont, key, val, idContainer, isRequired) {
 
 /*******************************************************************************************/
 
-function rangeSettings(cont, key, val, idContainer, isRequired) {
-
-    var div_id = idContainer + '_' + 'element_container_' + cont;
-    var element_id = idContainer + '_input_' + cont;
+function rangeSettings(cont, key, val, form, isRequired) {
     
     if (!isEmpty(val.label)) {
         var openingLabelTag = '<span class="form_label">' + val.label + '</span>';
-            $("#" + idContainer).append(openingLabelTag);
+            $(form).append(openingLabelTag);
     }
 
     var specialAtr = specialAttributes(val, isRequired);
-    var containerDiv = '<p id="' + div_id + '" class="range-field"></p>';
-    var inputTag = '<input type="range" id="' + element_id + '" name="' + key + '"' + specialAtr + '>';
+    var containerDiv = '<p class="range-field"></p>';
+    var inputTag = '<input type="range" name="' + key + '"' + specialAtr + '>';
 
-    $("#" + idContainer).append(containerDiv);
+    $("#" + form).append(containerDiv);
     $("#" + div_id).append(inputTag);
+}
+
+/*******************************************************************************************/
+
+function textAreaSettings(cont, key, val, form, isRequired) {
+
+    var containerObj = jQuery('<div/>', {"class":"input-field"});
+    var inputObj = jQuery('<textarea/>', {"class":"materialize-textarea"});
+
+    var labelObj;
+    if (!isEmpty(val.label)) {
+            labelObj = jQuery('<label>'+val.label+'</label>', {});
+    }
+
+    containerObj.append(inputObj);
+    containerObj.append(labelObj);
+    form.append(containerObj);
+}
+
+/*******************************************************************************************/
+
+function fileSettings(cont, key, val, form, isRequired) {
+    
+    var containerObj = jQuery('<div/>', {"class":"file-field input-field"});
+    var inputObj = jQuery('<input/>', {"class":"file-path validate", "type":"text"});
+    
+    if (!isEmpty(val.label))
+        {
+            var openingLabelObj = jQuery('<span class="form_label">'+val.label+'</span>', {});
+            form.append(openingLabelObj);
+        }
+    
+    var buttonDivObj = jQuery('<div/>', {"class":"btn"});
+    
+    var spanObj = jQuery('<span/>', {});
+    var fileObj = jQuery('<input/>', {"type":"file"});
+    
+    if (!isEmpty(val.button_tag)) {
+        spanObj.html(val.button_tag);
+    }
+
+    buttonDivObj.append(spanObj);
+    buttonDivObj.append(fileObj);
+    containerObj.append(inputObj);
+    containerObj.append(buttonDivObj);
+    form.append(containerObj);
 }
 
 /*************************************************************************************************/
@@ -287,8 +340,6 @@ function rangeSettings(cont, key, val, idContainer, isRequired) {
 function specialAttributes(val, defRequired)
 {
     var specialAtr = "";
-
-    console.log(val);
 
     if (val.required != null)
     {
