@@ -41,6 +41,18 @@
         }
     }
     ,
+    "tamano": {
+        "type": "select",
+        "label": "Tamaño",
+        "options": {
+            "0": {"tag":"Miniatura"},
+            "1": {"tag":"Pequeno"},
+            "2": {"tag":"Mediano"},
+            "3": {"tag":"Grande"},
+            "4": {"tag":"Gigante"}
+        }
+    }
+    ,
     "foto": {
         "type": "file",
         "label": "Imagen",
@@ -53,16 +65,5 @@
     "otros": {
         "type": "textarea",
         "label": "Otros"
-    },
-    "tamano": {
-        "type": "select",
-        "label": "Tamaño",
-        "options": {
-            "0": {"tag":"Miniatura"},
-            "1": {"tag":"Pequeno"},
-            "2": {"tag":"Mediano"},
-            "3": {"tag":"Grande"},
-            "4": {"tag":"Gigante"}
-        }
     }
 }

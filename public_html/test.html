@@ -22,12 +22,12 @@ and open the template in the editor.
 
             $(window).load(function () {
                 createForm("forms/perro.json", $("#test"));
-
             });
-
-            $(document).on('DOMSubtreeModified', 'select', function () {
-                console.log("subtree");
-                $(this).material_select();
+            
+            $(document).on('formCreated', function (e) {
+                $.each(e.selects, function (key, select) {
+                    select.material_select();
+                });
             });
         </script>
         <script type="text/javascript" src="js/main.js"></script>

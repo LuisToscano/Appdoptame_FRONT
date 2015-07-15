@@ -5,92 +5,103 @@
  */
 function createForm(jsonURL, container) {
 
-    $.getJSON(jsonURL, function (data) {
+    var selects = [];
 
-        var config = data.form_config;
-        var formObj = jQuery('<form/>', {});
-        newSpecialAttributes(formObj, data.form_config, false);
+    $.ajax({
+        url: jsonURL,
+        dataType: 'json',
+        async: false,
+        success: function (data) {
+            var config = data.form_config;
+            var formObj = jQuery('<form/>', {});
+            newSpecialAttributes(formObj, data.form_config, false);
 
-        if (!isEmpty(data.form_config.label))
-        {
-            var formLabelTag = '<h2>' + data.form_config.label + '</h2>';
-            container.append(formLabelTag);
-        }
-
-        delete(data.form_config);
-        var cont = 0;
-
-        container.append(formObj);
-
-        $.each(data, function (key, val) {
-            if (!isEmpty(val.type)) {
-                cont++;
-
-                switch (val.type) {
-                    case "text":
-                    {
-                        textBoxSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "password":
-                    {
-                        textBoxSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "email":
-                    {
-                        textBoxSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "select":
-                    {
-                        selectBoxSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "checkbox":
-                    {
-                        checkBoxSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "radio":
-                    {
-                        radioButtonSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "range":
-                    {
-                        rangeSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "textarea":
-                    {
-                        textAreaSettings(key, val, formObj);
-                        break;
-                    }
-
-                    case "file":
-                    {
-                        fileSettings(key, val, formObj);
-                        break;
-                    }
-
-                    default:
-                    {
-                        break;
-                    }
-
-                }
+            if (!isEmpty(data.form_config.label))
+            {
+                var formLabelTag = '<h2>' + data.form_config.label + '</h2>';
+                container.append(formLabelTag);
             }
-        });
+
+            delete(data.form_config);
+            var cont = 0;
+
+            container.append(formObj);
+
+            $.each(data, function (key, val) {
+                if (!isEmpty(val.type)) {
+                    cont++;
+
+                    switch (val.type) {
+                        case "text":
+                        {
+                            textBoxSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "password":
+                        {
+                            textBoxSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "email":
+                        {
+                            textBoxSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "select":
+                        {
+                            var select = selectBoxSettings(key, val, formObj);
+                            selects.push(select);
+                            break;
+                        }
+
+                        case "checkbox":
+                        {
+                            checkBoxSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "radio":
+                        {
+                            radioButtonSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "range":
+                        {
+                            rangeSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "textarea":
+                        {
+                            textAreaSettings(key, val, formObj);
+                            break;
+                        }
+
+                        case "file":
+                        {
+                            fileSettings(key, val, formObj);
+                            break;
+                        }
+
+                        default:
+                        {
+                            break;
+                        }
+
+                    }
+                }
+            });
+        }
     });
 
+    $.event.trigger({
+        type: "formCreated",
+        selects: selects
+    });
 }
 
 /*******************************************************************************************/
@@ -127,12 +138,14 @@ function selectBoxSettings(key, val, form) {
 
     if (!isEmpty(val.options)) {
         $.each(val.options, function (value, option) {
-            var optionObj = jQuery('<option/>', {"value":value});
+            var optionObj = jQuery('<option/>', {"value": value});
             optionObj.html(option.tag);
             newSpecialAttributes(optionObj, option, false);
             inputObj.append(optionObj);
         });
     }
+    
+    containerObj.append(inputObj);
 
     var labelObj;
     if (!isEmpty(val.label)) {
@@ -141,8 +154,9 @@ function selectBoxSettings(key, val, form) {
         containerObj.append(labelObj);
     }
 
-    containerObj.append(inputObj);
     form.append(containerObj);
+
+    return inputObj;
 }
 
 /*******************************************************************************************/
