@@ -434,15 +434,9 @@ nav.button-collapse i{
 }
 
 form{
+    padding-left: 1.8rem;
+    padding-right: 1.8rem;
     text-align: left;
-}
-
-.form_busqueda_avanzada{
-    width: 90%;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .form_busqueda_avanzada form{
@@ -554,6 +548,14 @@ input[type=range]+.thumb {
 
 input[type=range]+.thumb .value {
     color: #3FAFDA;
+}
+
+.btn {
+    background-color: #3FAFDA;
+}
+
+.btn:hover {
+    background-color: #3FAFDA;
 }
 
 

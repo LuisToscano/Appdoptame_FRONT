@@ -14,19 +14,19 @@ and open the template in the editor.
         <link href="css/main.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <div id="test">   
-        </div>
+        <div id="test"></div>
         <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script type="text/javascript" src="js/materialize.min.js"></script>
         <script type="text/javascript" src="js/materializeFormBuilder.js"></script>
         <script>
 
             $(window).load(function () {
-                createForm("forms/perro.json", "test");
+                createForm("forms/perro.json", $("#test"));
 
             });
 
             $(document).on('DOMSubtreeModified', 'select', function () {
+                console.log("subtree");
                 $(this).material_select();
             });
         </script>
