@@ -24,10 +24,8 @@ and open the template in the editor.
                 createForm("forms/perro.json", $("#test"));
             });
             
-            $(document).on('formCreated', function (e) {
-                $.each(e.selects, function (key, select) {
-                    select.material_select();
-                });
+            $(document).on('selectCreated', function (e) {
+                    e.select.material_select();
             });
         </script>
         <script type="text/javascript" src="js/main.js"></script>

@@ -443,6 +443,10 @@ form{
     width: 90%;
 }
 
+.form_element_container{
+    margin-bottom: 2rem;
+}
+
  h2{
     font-weight: bold;
     font-size: 1.8rem;
@@ -557,6 +561,12 @@ input[type=range]+.thumb .value {
 .btn:hover {
     background-color: #3FAFDA;
 }
+
+[type="radio"]:checked+label:after {
+    border: 2px solid #3FAFDA;
+    background-color: #3FAFDA;
+}
+
 
 
 

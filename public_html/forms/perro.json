@@ -24,10 +24,10 @@
         }
     },
     "sexo": {
-        "type": "checkbox",
+        "type": "radio",
         "direction": "horizontal",
         "label": "Sexo",
-        "boxes": {
+        "radios": {
             "0": {
                 "tag": "Macho",
                 "attr":{"id":"sexo_m"},

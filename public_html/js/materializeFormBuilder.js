@@ -5,20 +5,18 @@
  */
 function createForm(jsonURL, container) {
 
-    var selects = [];
-
     $.ajax({
         url: jsonURL,
         dataType: 'json',
-        async: false,
+        async: true,
         success: function (data) {
             var config = data.form_config;
             var formObj = jQuery('<form/>', {});
             newSpecialAttributes(formObj, data.form_config, false);
 
-            if (!isEmpty(data.form_config.label))
+            if (!isEmpty(config.label))
             {
-                var formLabelTag = '<h2>' + data.form_config.label + '</h2>';
+                var formLabelTag = '<h2>' + config.label + '</h2>';
                 container.append(formLabelTag);
             }
 
@@ -53,7 +51,10 @@ function createForm(jsonURL, container) {
                         case "select":
                         {
                             var select = selectBoxSettings(key, val, formObj);
-                            selects.push(select);
+                            $.event.trigger({
+                                type: "selectCreated",
+                                select: select
+                            });
                             break;
                         }
 
@@ -97,17 +98,13 @@ function createForm(jsonURL, container) {
             });
         }
     });
-
-    $.event.trigger({
-        type: "formCreated",
-        selects: selects
-    });
 }
 
 /*******************************************************************************************/
 
 function textBoxSettings(key, val, form) {
 
+    var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
     var containerObj = jQuery('<div/>', {"class": "input-field"});
 
     var inputObj = jQuery('<input/>', {"type": val.type, "name": key});
@@ -127,14 +124,24 @@ function textBoxSettings(key, val, form) {
 
     containerObj.append(inputObj);
     containerObj.append(labelObj);
-    form.append(containerObj);
+    elementContainer.append(containerObj);
+    form.append(elementContainer);
 }
 
 /*******************************************************************************************/
 
 function selectBoxSettings(key, val, form) {
+
+    var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
     var containerObj = jQuery('<div/>', {"class": "input-field"});
     var inputObj = jQuery('<select/>', {"name": key});
+
+    var labelObj;
+    if (!isEmpty(val.label)) {
+        var labelObj = jQuery('<span/>', {'class': 'form_label'});
+        labelObj.html(val.label);
+        elementContainer.append(labelObj);
+    }
 
     if (!isEmpty(val.options)) {
         $.each(val.options, function (value, option) {
@@ -144,17 +151,11 @@ function selectBoxSettings(key, val, form) {
             inputObj.append(optionObj);
         });
     }
-    
+
     containerObj.append(inputObj);
 
-    var labelObj;
-    if (!isEmpty(val.label)) {
-        labelObj = jQuery('<label/>', {});
-        labelObj.html(val.label);
-        containerObj.append(labelObj);
-    }
-
-    form.append(containerObj);
+    elementContainer.append(containerObj);
+    form.append(elementContainer);
 
     return inputObj;
 }
@@ -171,12 +172,14 @@ function checkBoxSettings(key, val, form) {
     }
 
     if (!isEmpty(val.direction) && !isEmpty(val.boxes)) {
+        var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
 
-        var containerObj = jQuery('<p/>', {});
         switch (val.direction) {
 
             case "horizontal":
             {
+                var containerObj = jQuery('<p/>', {});
+
                 $.each(val.boxes, function (value, option) {
                     var inputObj = jQuery('<input/>', {"type": "checkbox", "name": key + "[]"});
                     newSpecialAttributes(inputObj, option);
@@ -186,25 +189,30 @@ function checkBoxSettings(key, val, form) {
                     containerObj.append(inputObj);
                     containerObj.append(labelObj);
                 });
+
+                elementContainer.append(containerObj);
                 break;
             }
 
             case "vertical":
             {
                 $.each(val.boxes, function (value, option) {
+                    var containerObj = jQuery('<p/>', {});
                     var inputObj = jQuery('<input/>', {"type": "checkbox", "name": key + "[]"});
                     newSpecialAttributes(inputObj, option);
 
-                    var labelObj = jQuery('<label>' + option.tag + '</label>', {});
+                    var labelObj = jQuery('<label>', {"for": option.attr.id});
+                    labelObj.html(option.tag);
                     containerObj.append(inputObj);
                     containerObj.append(labelObj);
+                    elementContainer.append(containerObj);
                 });
                 break;
             }
 
         }
 
-        form.append(containerObj);
+        form.append(elementContainer);
     }
 
 }
@@ -221,12 +229,13 @@ function radioButtonSettings(key, val, form) {
             form.append(openingLabelTag);
         }
 
-        var containerDiv = jQuery('<p/>', {});
+        var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
 
         switch (val.direction) {
 
             case "horizontal":
             {
+                var containerDiv = jQuery('<p/>', {});
                 $.each(val.radios, function (value, option) {
                     if (existsAndisTrue(val.with_gap))
                     {
@@ -236,18 +245,20 @@ function radioButtonSettings(key, val, form) {
                     var checkTag = jQuery('<input/>', {'type': 'radio', 'name': key});
                     newSpecialAttributes(checkTag, option);
 
-                    var labelTag = jQuery('<label/>', {});
+                    var labelTag = jQuery('<label/>', {"for": option.attr.id});
                     labelTag.html(option.tag);
                     containerDiv.append(checkTag);
                     containerDiv.append(labelTag);
                 });
+
+                elementContainer.append(containerDiv);
                 break;
             }
 
             case "vertical":
             {
                 $.each(val.radios, function (value, option) {
-
+                    var containerDiv = jQuery('<p/>', {});
                     if (existsAndisTrue(val.with_gap))
                     {
                         option.with_gap = true;
@@ -256,17 +267,18 @@ function radioButtonSettings(key, val, form) {
                     var checkTag = jQuery('<input/>', {'type': 'radio', 'name': key});
                     newSpecialAttributes(checkTag, option);
 
-                    var labelTag = jQuery('<label/>', {});
+                    var labelTag = jQuery('<label/>', {"for": option.attr.id});
                     labelTag.html(option.tag);
                     containerDiv.append(checkTag);
                     containerDiv.append(labelTag);
+                    elementContainer.append(containerDiv);
                 });
                 break;
             }
 
         }
 
-        form.append(containerDiv);
+        form.append(elementContainer);
     }
 }
 
@@ -274,6 +286,8 @@ function radioButtonSettings(key, val, form) {
 /*******************************************************************************************/
 
 function rangeSettings(key, val, form) {
+
+    var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
 
     if (!isEmpty(val.label)) {
         var openingLabelTag = jQuery('<span/>', {'class': 'form_label'});
@@ -287,13 +301,16 @@ function rangeSettings(key, val, form) {
     newSpecialAttributes(inputTag, val);
 
     containerDiv.append(inputTag);
-    form.append(containerDiv);
+    elementContainer.append(containerDiv);
+    form.append(elementContainer);
 
 }
 
 /*******************************************************************************************/
 
 function textAreaSettings(key, val, form) {
+
+    var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
 
     var containerObj = jQuery('<div/>', {"class": "input-field"});
     var inputObj = jQuery('<textarea/>', {"class": "materialize-textarea", "name": key});
@@ -309,15 +326,22 @@ function textAreaSettings(key, val, form) {
         containerObj.append(labelObj);
     }
 
-    form.append(containerObj);
+    elementContainer.append(containerObj);
+    form.append(elementContainer);
 }
 
 /*******************************************************************************************/
 
 function fileSettings(key, val, form) {
 
-    var containerObj = jQuery('<div/>', {"class": "file-field input-field"});
-    var inputObj = jQuery('<input/>', {"class": "file-path validate", "type": "text"});
+    var elementContainer = jQuery('<div/>', {"class": "form_element_container"});
+
+    var containerObj = jQuery('<div/>', {});
+    containerObj.addClass("file-field");
+    containerObj.addClass("input-field");
+    var inputObj = jQuery('<input/>', {"type": "text"});
+    inputObj.addClass("file-path");
+    inputObj.addClass("validate");
 
     if (!isEmpty(val.label))
     {
@@ -341,7 +365,8 @@ function fileSettings(key, val, form) {
     buttonDivObj.append(fileObj);
     containerObj.append(inputObj);
     containerObj.append(buttonDivObj);
-    form.append(containerObj);
+    elementContainer.append(containerObj);
+    form.append(elementContainer);
 }
 
 /*************************************************************************************************/
